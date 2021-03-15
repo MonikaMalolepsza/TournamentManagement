@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 using TournamentManagement.Model;
 
 
@@ -9,45 +11,21 @@ namespace TournamentManagement.ControllerNS
 
         #region Attributes
 
-        private Team _team;
-        private Player _player;
-        private Referee _referee;
-        private Trainer _trainer;
-        private Physio _physio;
+        private List<Team> _teams;
+        private List<Player> _players;
+        private List<Referee> _referees;
+        private List<Trainer> _trainers;
+        private List<Physio> _physios;
 
         #endregion
 
         #region Properties
 
-        public Physio Physio
-        {
-            get => _physio;
-            set => _physio = value;
-        }
-
-        public Trainer Trainer
-        {
-            get => _trainer;
-            set => _trainer = value;
-        }
-
-        public Team Team
-        {
-            get => _team;
-            set => _team = value;
-        }
-
-        public Player Player
-        {
-            get => _player;
-            set => _player = value;
-        }
-
-        public Referee Referee
-        {
-            get => _referee;
-            set => _referee = value;
-        }
+        public List<Team> Teams { get => _teams; set => _teams = value; }
+        public List<Player> Players { get => _players; set => _players = value; }
+        public List<Referee> Referees { get => _referees; set => _referees = value; }
+        public List<Trainer> Trainers { get => _trainers; set => _trainers = value; }
+        public List<Physio> Physios { get => _physios; set => _physios = value; }
 
         #endregion
 
@@ -55,20 +33,20 @@ namespace TournamentManagement.ControllerNS
 
         public Controller()
         {
-            Team = new Team();
-            Player = new Player();
-            Physio = new Physio();
-            Trainer = new Trainer();
-            Referee = new Referee();
+            Teams = new List<Team>();
+            Players = new List<Player>();
+            Physios = new List<Physio>();
+            Trainers = new List<Trainer>();
+            Referees = new List<Referee>();
         }
 
-        public Controller(Team team, Trainer trainer, Referee referee, Player player, Physio physio)
+        public Controller(List<Team> teams, List<Trainer> trainers, List<Referee> referees, List<Player> players, List<Physio> physios)
         {
-            Team = team;
-            Player = player;
-            Physio = physio;
-            Trainer = trainer;
-            Referee = referee;
+            Teams = teams;
+            Players = players;
+            Physios = physios;
+            Trainers = trainers;
+            Referees = referees;
         }
 
         #endregion
@@ -85,6 +63,38 @@ namespace TournamentManagement.ControllerNS
             m.NewMember(t);
             m.NewMember(p);
 
+        }
+
+        public void InitData()
+        {
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = "Server=127.0.0.1;Port=3307;Database=tournament;Uid=root;Pwd=example";
+
+            string selectIdsPlayer = "SELECT id FROM player";
+
+            MySqlCommand cmd = new MySqlCommand(selectIdsPlayer, connection);
+
+            try
+            {
+                connection.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Player p = new Player();
+                    Participant.Id(reader.GetInt64("ID"));
+                    Teilnehmer.Add(fs);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         #endregion

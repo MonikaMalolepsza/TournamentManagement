@@ -110,6 +110,7 @@
     <Compile Include="Model\Physio.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\Trainer.cs" />
+    <Compile Include="Model\FootballPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

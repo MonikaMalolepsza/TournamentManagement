@@ -11,7 +11,6 @@ namespace TournamentManagement.Model
         private bool _active;
         private string _surname;
 
-
         #endregion
 
         #region Properties
