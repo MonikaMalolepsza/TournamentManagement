@@ -51,10 +51,13 @@ namespace TournamentManagement.Model
             // Console.WriteLine(this.Name);
         }
 
-        public virtual void save()
-        {
+        public abstract void Update();
 
-        }
+        public abstract void Put();
+
+        public abstract void Delete();
+
+        public abstract void Get(int id);
 
         #endregion
    
