@@ -54,6 +54,26 @@ namespace TournamentManagement.Model
             }
             return res;
         }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Put()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Get(int id)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

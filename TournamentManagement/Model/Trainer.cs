@@ -4,8 +4,9 @@ namespace TournamentManagement.Model
     public class Trainer : Participant
     {
 
-            #region Attributes
+        #region Attributes
 
+            private string _surname;
             private int _age;
 
 
@@ -19,11 +20,17 @@ namespace TournamentManagement.Model
                 set => _age = value;
             }
 
-            #endregion
+            public string Surname
+        {
+            get => _surname;
+            set => _surname = value;
+        }
 
-            #region Constructors
+        #endregion
 
-            public Trainer()
+        #region Constructors
+
+        public Trainer()
             {
                 this.Age = 0;
             }
@@ -53,7 +60,26 @@ namespace TournamentManagement.Model
                 return base.GiveInfo() + ", " + $"Age: {Age}";
             }
 
-            #endregion
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
+
+        public override void Put()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
     
 }
